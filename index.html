@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="pt-BR" data-lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iure Rosa — Senior Product Owner</title>
+  <meta name="description" content="Iure Rosa — Senior Product Owner na Globo. Produto, Data & AI e liderança de times, com raízes em pesquisa de robótica e inteligência artificial.">
+  <meta property="og:title" content="Iure Rosa — Senior Product Owner">
+  <meta property="og:description" content="Produto, Data & AI e liderança de times. Engenheiro e pesquisador de robótica de formação.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#f6f4ef">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // Apply saved preferences before paint to avoid a flash
+    try {
+      var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t;
+      var l = localStorage.getItem('lang'); if (l) { document.documentElement.dataset.lang = l; document.documentElement.lang = l === 'en' ? 'en' : 'pt-BR'; }
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main"><span data-l="pt">Pular para o conteúdo</span><span data-l="en">Skip to content</span></a>
+
+  <header class="nav" id="top">
+    <div class="wrap nav__inner">
+      <a class="brand" href="#top" aria-label="Iure Rosa">
+        <span class="brand__mark">IR</span>
+        <span class="brand__name">Iure Rosa</span>
+      </a>
+      <nav class="nav__links" aria-label="Seções">
+        <a href="#sobre"><span data-l="pt">Sobre</span><span data-l="en">About</span></a>
+        <a href="#trajetoria"><span data-l="pt">Trajetória</span><span data-l="en">Experience</span></a>
+        <a href="#lideranca"><span data-l="pt">Liderança</span><span data-l="en">Leadership</span></a>
+        <a href="#pesquisa"><span data-l="pt">Pesquisa</span><span data-l="en">Research</span></a>
+        <a href="#formacao"><span data-l="pt">Formação</span><span data-l="en">Education</span></a>
+      </nav>
+      <div class="nav__tools">
+        <button class="chip" id="langToggle" type="button" aria-label="Mudar idioma / Change language">
+          <span class="chip__opt" data-opt="pt">PT</span><span class="chip__sep">/</span><span class="chip__opt" data-opt="en">EN</span>
+        </button>
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Alternar tema">
+          <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </button>
+        <a class="btn btn--sm" href="#contato"><span data-l="pt">Contato</span><span data-l="en">Contact</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero__grid">
+        <div class="hero__text">
+          <p class="eyebrow reveal"><span class="dot"></span>Senior Product Owner · Globo · Rio de Janeiro</p>
+          <h1 class="hero__title reveal">
+            <span data-l="pt">Produto, dados e IA —<br><em>com pessoas no centro.</em></span>
+            <span data-l="en">Product, data and AI —<br><em>with people at the center.</em></span>
+          </h1>
+          <p class="hero__lead reveal">
+            <span data-l="pt">Sou o Iure. Lidero estratégia de produto em Data &amp; AI, Monetização e AdTech na organização de DevOps &amp; SRE da Globo. Engenheiro e pesquisador de robótica de formação, hoje construo produtos — e times — que conectam negócio e tecnologia.</span>
+            <span data-l="en">I'm Iure. I lead product strategy across Data &amp; AI, Monetization and AdTech within Globo's DevOps &amp; SRE organization. An engineer and robotics researcher by training, I now build products — and teams — that connect business and technology.</span>
+          </p>
+          <div class="hero__cta reveal">
+            <a class="btn" href="mailto:iurengineer@gmail.com"><span data-l="pt">Vamos conversar</span><span data-l="en">Let's talk</span> <span aria-hidden="true">→</span></a>
+            <a class="btn btn--ghost" href="https://www.linkedin.com/in/iure-rosa/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+
+        <figure class="planner reveal" aria-label="Animação de planejamento de caminho">
+          <div class="planner__bar">
+            <span class="planner__dots"><i></i><i></i><i></i></span>
+            <span class="mono">path_planner.py</span>
+            <span class="mono planner__status" id="plannerStatus">searching…</span>
+          </div>
+          <canvas id="planner" aria-hidden="true"></canvas>
+          <figcaption class="planner__cap mono">
+            <span data-l="pt">// planejamento de caminho em grid — uma homenagem aos anos de pesquisa em robótica</span>
+            <span data-l="en">// grid path planning — a nod to my years of robotics research</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="wrap">
+        <dl class="stats reveal">
+          <div class="stat">
+            <dt><span data-l="pt">De trainee a Senior PO na Globo</span><span data-l="en">From trainee to Senior PO at Globo</span></dt>
+            <dd>19 <small><span data-l="pt">meses</span><span data-l="en">months</span></small></dd>
+          </div>
+          <div class="stat">
+            <dt><span data-l="pt">De pesquisa em IA e robótica</span><span data-l="en">Of AI &amp; robotics research</span></dt>
+            <dd>5 <small><span data-l="pt">anos</span><span data-l="en">years</span></small></dd>
+          </div>
+          <div class="stat">
+            <dt><span data-l="pt">Artigos científicos publicados</span><span data-l="en">Scientific papers published</span></dt>
+            <dd>4</dd>
+          </div>
+          <div class="stat">
+            <dt><span data-l="pt">Idiomas — PT, EN, DE, ES</span><span data-l="en">Languages — PT, EN, DE, ES</span></dt>
+            <dd>4</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section class="section" id="sobre">
+      <div class="wrap two-col">
+        <header class="section__head reveal">
+          <p class="kicker mono">01 — <span data-l="pt">Sobre</span><span data-l="en">About</span></p>
+          <h2 class="section__title">
+            <span data-l="pt">Tecnologia gera mais valor quando <em>conecta pessoas</em>, negócio e inovação.</span>
+            <span data-l="en">Technology creates the most value when it <em>connects people</em>, business and innovation.</span>
+          </h2>
+        </header>
+        <div class="prose reveal">
+          <p data-l="pt">Minha carreira sempre transitou entre contextos técnicos e de negócio: da pesquisa em inteligência artificial aplicada à robótica móvel, passando por engenharia de software de IA, até a gestão de produto em uma das maiores empresas de mídia do país. O fio condutor é traduzir problemas complexos em estratégias claras, produtos e iniciativas que saem do papel.</p>
+          <p data-l="en">My career has always moved between technical and business contexts: from AI research applied to mobile robotics, through AI software engineering, to product management at one of Brazil's largest media companies. The common thread is turning complex problems into clear strategies, products and initiatives that actually ship.</p>
+          <p data-l="pt">Hoje atuo de forma transversal em múltiplos squads, conectando prioridades de negócio, estratégia de tecnologia e execução. Me interessa construir modelos operacionais, amadurecer práticas de produto e engenharia e criar as condições para que times trabalhem melhor.</p>
+          <p data-l="en">Today I work cross-functionally across multiple squads, connecting business priorities, technology strategy and execution. I care about building operating models, maturing product and engineering practices, and creating the conditions for teams to do their best work.</p>
+          <p data-l="pt">Meu objetivo de longo prazo é crescer para a liderança de tecnologia e produto — combinando pensamento estratégico, profundidade técnica e, principalmente, <strong>desenvolvimento de pessoas</strong> para formar times de alta performance.</p>
+          <p data-l="en">My long-term goal is to grow into technology and product leadership — combining strategic thinking, technical depth and, above all, <strong>people development</strong> to build high-performing teams.</p>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <ul class="pillars">
+          <li class="pillar reveal">
+            <span class="pillar__num mono">A</span>
+            <h3><span data-l="pt">Produto &amp; Estratégia</span><span data-l="en">Product &amp; Strategy</span></h3>
+            <p><span data-l="pt">Visão, roadmap e priorização em múltiplos squads. Portfólio, governança e rastreabilidade ponta a ponta, com métricas que apoiam decisões executivas.</span><span data-l="en">Vision, roadmap and prioritization across multiple squads. Portfolio, governance and end-to-end traceability, with metrics that support executive decisions.</span></p>
+          </li>
+          <li class="pillar reveal">
+            <span class="pillar__num mono">B</span>
+            <h3><span data-l="pt">Pessoas &amp; Liderança</span><span data-l="en">People &amp; Leadership</span></h3>
+            <p><span data-l="pt">Alinhar stakeholders em torno de valor, mediar conflitos e desenvolver times. Liderança exercida desde a universidade — à frente do Engenheiros Sem Fronteiras e do Centro Acadêmico.</span><span data-l="en">Aligning stakeholders around value, resolving conflicts and growing teams. Leadership practiced since university — heading Engineers Without Borders and the student association.</span></p>
+          </li>
+          <li class="pillar reveal">
+            <span class="pillar__num mono">C</span>
+            <h3><span data-l="pt">IA &amp; Engenharia</span><span data-l="en">AI &amp; Engineering</span></h3>
+            <p><span data-l="pt">Da pesquisa em aprendizado por reforço à prática de engenharia de IA. Hoje, explorando como agentes inteligentes vão redesenhar a forma como software é construído e operado.</span><span data-l="en">From reinforcement learning research to AI engineering practice. Now exploring how intelligent agents will reshape the way software is built and operated.</span></p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="wrap">
+        <aside class="callout reveal">
+          <p class="kicker mono"><span data-l="pt">Pensando agora</span><span data-l="en">Currently thinking about</span></p>
+          <p class="callout__text">
+            <span data-l="pt">“A próxima geração de organizações de tecnologia não vai apenas adotar IA como mais uma ferramenta — vai repensar como pessoas, produtos, processos e agentes inteligentes colaboram.”</span>
+            <span data-l="en">“The next generation of technology organizations won't simply adopt AI as another tool — they'll rethink how people, products, processes and intelligent agents collaborate.”</span>
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- TRAJETÓRIA -->
+    <section class="section section--alt" id="trajetoria">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="kicker mono">02 — <span data-l="pt">Trajetória</span><span data-l="en">Experience</span></p>
+          <h2 class="section__title">
+            <span data-l="pt">Da robótica ao <em>produto</em>.</span>
+            <span data-l="en">From robotics to <em>product</em>.</span>
+          </h2>
+        </header>
+
+        <ol class="timeline">
+          <li class="job job--featured reveal">
+            <div class="job__meta">
+              <span class="mono">2025 — <span data-l="pt">hoje</span><span data-l="en">now</span></span>
+              <span class="job__place">Rio de Janeiro</span>
+            </div>
+            <div class="job__body">
+              <h3 class="job__org">Globo</h3>
+              <div class="role">
+                <div class="role__head">
+                  <h4>Senior Product Owner</h4>
+                  <span class="tag tag--accent"><span data-l="pt">Atual</span><span data-l="en">Current</span></span>
+                  <span class="role__date mono"><span data-l="pt">set 2026 — atual</span><span data-l="en">Sep 2026 — present</span></span>
+                </div>
+                <p><span data-l="pt">Estratégia e execução de produto em Data &amp; AI, Plataformas de Monetização e AdTech, dentro da organização de DevOps &amp; SRE.</span><span data-l="en">Product strategy and execution across Data &amp; AI, Monetization Platforms and AdTech, within the DevOps &amp; SRE organization.</span></p>
+                <ul class="ticks">
+                  <li><span data-l="pt">Visão, priorização e roadmap em múltiplos squads e iniciativas estratégicas</span><span data-l="en">Vision, prioritization and roadmap across multiple squads and strategic initiatives</span></li>
+                  <li><span data-l="pt">Ponte entre tecnologia, negócio e liderança, alinhando stakeholders em torno de resultados</span><span data-l="en">Bridge between technology, business and leadership, aligning stakeholders around outcomes</span></li>
+                  <li><span data-l="pt">Gestão de portfólio e backlog com modelos operacionais, governança e rastreabilidade ponta a ponta</span><span data-l="en">Portfolio and backlog management with operating models, governance and end-to-end traceability</span></li>
+                  <li><span data-l="pt">Iniciativas de dados e IA para transformação, eficiência e monetização</span><span data-l="en">Data and AI initiatives for transformation, efficiency and monetization</span></li>
+                  <li><span data-l="pt">Métricas e reporte executivo; evolução de práticas ágeis e maturidade de produto</span><span data-l="en">Metrics and executive reporting; evolving agile practices and product maturity</span></li>
+                </ul>
+              </div>
+              <div class="role">
+                <div class="role__head">
+                  <h4>Trainee · Broadcast &amp; Transmission Products</h4>
+                  <span class="role__date mono"><span data-l="pt">fev 2025 — ago 2026</span><span data-l="en">Feb 2025 — Aug 2026</span></span>
+                </div>
+                <p><span data-l="pt">Atuação próxima a iniciativas de Product Ownership em Datacasting, DTV+ e tecnologias de mídia de próxima geração: discovery, roadmap, pilotos e testes de campo, materiais executivos e coordenação entre times técnicos, operacionais, de negócio e parceiros.</span><span data-l="en">Worked closely with Product Ownership initiatives in Datacasting, DTV+ and next-generation media technologies: discovery, roadmap, pilots and field tests, executive materials and coordination across technical, operational, business teams and partners.</span></p>
+              </div>
+            </div>
+          </li>
+
+          <li class="job reveal">
+            <div class="job__meta">
+              <span class="mono">2023 — 2025</span>
+              <span class="job__place">Vinhedo, SP</span>
+            </div>
+            <div class="job__body">
+              <h3 class="job__org">Ecotrace Solutions</h3>
+              <div class="role">
+                <div class="role__head">
+                  <h4>AI Software Engineer</h4>
+                  <span class="role__date mono"><span data-l="pt">ago 2023 — jan 2025</span><span data-l="en">Aug 2023 — Jan 2025</span></span>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="job reveal">
+            <div class="job__meta">
+              <span class="mono">2020 — 2024</span>
+              <span class="job__place">Viçosa, MG</span>
+            </div>
+            <div class="job__body">
+              <h3 class="job__org">NERo — <span data-l="pt">Núcleo de Especialização em Robótica</span><span data-l="en">Robotics Specialization Lab</span></h3>
+              <div class="role">
+                <div class="role__head">
+                  <h4><span data-l="pt">Pesquisador em IA</span><span data-l="en">AI Researcher</span></h4>
+                  <span class="role__date mono"><span data-l="pt">jan 2020 — dez 2024</span><span data-l="en">Jan 2020 — Dec 2024</span></span>
+                </div>
+                <p><span data-l="pt">Algoritmos de planejamento de movimento para robôs autônomos em ambientes desordenados: sistemas dinâmicos híbridos, sistemas subatuados (como um quadrotor com carga suspensa) e planejamento multi-robô sem colisões.</span><span data-l="en">Motion planning algorithms for autonomous robots in cluttered environments: hybrid dynamical systems, underactuated systems (like a quadrotor with a suspended payload) and collision-free multi-robot planning.</span></p>
+              </div>
+              <div class="role">
+                <div class="role__head">
+                  <h4><span data-l="pt">Revisor de periódicos</span><span data-l="en">Journal reviewer</span></h4>
+                  <span class="role__date mono"><span data-l="pt">jul 2020 — jul 2024</span><span data-l="en">Jul 2020 — Jul 2024</span></span>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="job reveal">
+            <div class="job__meta">
+              <span class="mono">2022 — 2023</span>
+              <span class="job__place">Viçosa, MG</span>
+            </div>
+            <div class="job__body">
+              <h3 class="job__org">CNPq</h3>
+              <div class="role">
+                <div class="role__head">
+                  <h4><span data-l="pt">Bolsista de Desenvolvimento Tecnológico</span><span data-l="en">Technological Development Fellow</span></h4>
+                  <span class="role__date mono"><span data-l="pt">jan 2022 — jan 2023</span><span data-l="en">Jan 2022 — Jan 2023</span></span>
+                </div>
+                <p><span data-l="pt">Aprendizado por reforço para navegação de veículos autônomos e roteamento de múltiplos robôs no transporte de cargas, integrando ROS, Gazebo e Python.</span><span data-l="en">Reinforcement learning for autonomous vehicle navigation and multi-robot routing for cargo transport, integrating ROS, Gazebo and Python.</span></p>
+              </div>
+            </div>
+          </li>
+
+          <li class="job reveal">
+            <div class="job__meta">
+              <span class="mono">2021 — 2022</span>
+              <span class="job__place">Ouro Branco, MG</span>
+            </div>
+            <div class="job__body">
+              <h3 class="job__org">Gerdau</h3>
+              <div class="role">
+                <div class="role__head">
+                  <h4><span data-l="pt">Estagiário de Manutenção Eletromecânica</span><span data-l="en">Electromechanical Maintenance Intern</span></h4>
+                  <span class="role__date mono"><span data-l="pt">mai 2021 — dez 2022</span><span data-l="en">May 2021 — Dec 2022</span></span>
+                </div>
+                <p><span data-l="pt">Automação da impressão de etiquetas na rede nível 2 (Python + Matrikon OPC DA), machine learning no monitoramento de veios e moldes do lingotamento contínuo e revisão de planos de manutenção no SAP PM.</span><span data-l="en">Automated label printing on the level-2 network (Python + Matrikon OPC DA), applied machine learning to condition monitoring in continuous casting, and reviewed maintenance plans in SAP PM.</span></p>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- LIDERANÇA -->
+    <section class="section" id="lideranca">
+      <div class="wrap two-col">
+        <header class="section__head reveal">
+          <p class="kicker mono">03 — <span data-l="pt">Liderança</span><span data-l="en">Leadership</span></p>
+          <h2 class="section__title">
+            <span data-l="pt">Liderar pessoas <em>antes</em> de liderar produtos.</span>
+            <span data-l="en">Leading people <em>before</em> leading products.</span>
+          </h2>
+          <p class="section__sub">
+            <span data-l="pt">Muito antes do primeiro backlog, aprendi a coordenar times voluntários, alinhar diretorias e representar pessoas. É essa base que quero levar para a gestão de times de tecnologia.</span>
+            <span data-l="en">Long before my first backlog, I learned to coordinate volunteer teams, align directors and represent people. That's the foundation I want to bring to leading technology teams.</span>
+          </p>
+        </header>
+
+        <div class="lead-cards">
+          <article class="lead-card reveal">
+            <p class="mono lead-card__date">2020 — 2023</p>
+            <h3><span data-l="pt">Engenheiros Sem Fronteiras — Núcleo Viçosa</span><span data-l="en">Engineers Without Borders — Viçosa Chapter</span></h3>
+            <p class="lead-card__path">
+              <span data-l="pt">Assessor de Comunicação → Assessor Geral → <strong>Diretor Geral</strong></span>
+              <span data-l="en">Communications Advisor → General Advisor → <strong>Executive Director</strong></span>
+            </p>
+            <p><span data-l="pt">Planejamento estratégico da gestão, acompanhamento de objetivos com medidas corretivas e apoio a todas as diretorias para garantir alinhamento e integração da organização.</span><span data-l="en">Led strategic planning, tracked goals with corrective actions and supported every board area to keep the organization aligned and integrated.</span></p>
+          </article>
+          <article class="lead-card reveal">
+            <p class="mono lead-card__date">2019 — 2022</p>
+            <h3><span data-l="pt">Centro Acadêmico de Engenharia Elétrica — CAELT UFV</span><span data-l="en">Electrical Engineering Student Association — CAELT UFV</span></h3>
+            <p class="lead-card__path"><strong><span data-l="pt">Diretor Geral</span><span data-l="en">President</span></strong></p>
+            <p><span data-l="pt">Representação do corpo discente frente à coordenação do curso por dois anos e meio.</span><span data-l="en">Represented the student body before the program's leadership for two and a half years.</span></p>
+          </article>
+          <article class="lead-card reveal">
+            <p class="mono lead-card__date">2019</p>
+            <h3><span data-l="pt">Universidade Federal de Viçosa</span><span data-l="en">Federal University of Viçosa</span></h3>
+            <p class="lead-card__path"><strong><span data-l="pt">Estudante-tutor &amp; monitor</span><span data-l="en">Student tutor &amp; teaching assistant</span></strong></p>
+            <p><span data-l="pt">Monitoria de Equações Diferenciais Ordinárias e de minicursos de interfaces gráficas em Python e AltoQi Lumine.</span><span data-l="en">Tutored Ordinary Differential Equations and assisted short courses on Python GUIs and AltoQi Lumine.</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PESQUISA -->
+    <section class="section section--ink" id="pesquisa">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="kicker mono">04 — <span data-l="pt">Robótica &amp; IA</span><span data-l="en">Robotics &amp; AI</span></p>
+          <h2 class="section__title">
+            <span data-l="pt">A paixão que <em>continua</em>.</span>
+            <span data-l="en">The passion that <em>stays</em>.</span>
+          </h2>
+          <p class="section__sub">
+            <span data-l="pt">Cinco anos ensinando robôs e drones a decidir sozinhos — com aprendizado por reforço, curriculum learning e planejamento de trajetórias em 3D.</span>
+            <span data-l="en">Five years teaching robots and drones to decide on their own — with reinforcement learning, curriculum learning and 3D path planning.</span>
+          </p>
+        </header>
+
+        <div class="research">
+          <div class="research__themes reveal">
+            <h3 class="mono small-title"><span data-l="pt">Temas</span><span data-l="en">Themes</span></h3>
+            <ul class="tags">
+              <li>Reinforcement Learning</li>
+              <li>Q-Learning</li>
+              <li>Curriculum Learning</li>
+              <li>UAV Path Planning</li>
+              <li>Multi-robot Systems</li>
+              <li>Hybrid Dynamical Systems</li>
+              <li>ROS · Gazebo</li>
+              <li>Python</li>
+            </ul>
+            <div class="research__links">
+              <a class="link-arrow" href="https://github.com/bad-iuiu" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+              <a class="link-arrow" href="https://www.researchgate.net/profile/Iure-Oliveira/research" target="_blank" rel="noopener">ResearchGate <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+
+          <div class="research__pubs reveal">
+            <h3 class="mono small-title"><span data-l="pt">Publicações</span><span data-l="en">Publications</span></h3>
+            <ol class="pubs">
+              <li><span class="pubs__n mono">01</span><span>UAV Navigation in 3D Urban Environments with Curriculum-based Reinforcement Learning</span></li>
+              <li><span class="pubs__n mono">02</span><span>A 3D Q-Learning Algorithm for Offline UAV Path Planning with Priority Shifting Rewards</span></li>
+              <li><span class="pubs__n mono">03</span><span>An Offline Path Planning Method for UAVs Using Priority Shifting</span></li>
+              <li><span class="pubs__n mono">04</span><span lang="pt-BR">Aplicação de Técnicas Q-Routing no Planejamento de Caminhos de Robôs Móveis</span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMAÇÃO -->
+    <section class="section" id="formacao">
+      <div class="wrap">
+        <header class="section__head reveal">
+          <p class="kicker mono">05 — <span data-l="pt">Formação</span><span data-l="en">Education</span></p>
+          <h2 class="section__title">
+            <span data-l="pt">Base sólida, <em>aprendizado contínuo</em>.</span>
+            <span data-l="en">Solid foundations, <em>continuous learning</em>.</span>
+          </h2>
+        </header>
+
+        <div class="edu-grid">
+          <div class="edu reveal">
+            <h3 class="mono small-title"><span data-l="pt">Acadêmica</span><span data-l="en">Academic</span></h3>
+            <ul class="edu__list">
+              <li>
+                <strong><span data-l="pt">Mestrado em Ciência da Computação</span><span data-l="en">Master's, Computer Science</span></strong>
+                <span><span data-l="pt">Universidade Federal de Viçosa</span><span data-l="en">Federal University of Viçosa</span> · 2023 — 2024</span>
+              </li>
+              <li>
+                <strong><span data-l="pt">Bacharelado em Engenharia Elétrica, ênfase em Robótica</span><span data-l="en">B.Eng. Electrical Engineering, Robotics track</span></strong>
+                <span><span data-l="pt">Universidade Federal de Viçosa</span><span data-l="en">Federal University of Viçosa</span> · 2017 — 2022</span>
+              </li>
+              <li>
+                <strong><span data-l="pt">Bootcamp Analista de Machine Learning</span><span data-l="en">Machine Learning Analyst Bootcamp</span></strong>
+                <span>IGTI · 2020</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="edu reveal">
+            <h3 class="mono small-title"><span data-l="pt">Certificações</span><span data-l="en">Certifications</span></h3>
+            <ul class="edu__plain">
+              <li>Robotics: Aerial Robotics</li>
+              <li>Neural Networks and Deep Learning</li>
+              <li>Sample-based Learning Methods</li>
+              <li>How to Write and Publish a Scientific Paper</li>
+              <li>MATLAB Onramp</li>
+            </ul>
+            <h3 class="mono small-title small-title--gap"><span data-l="pt">Reconhecimentos</span><span data-l="en">Honors</span></h3>
+            <ul class="edu__plain">
+              <li><span data-l="pt">3× Menção Honrosa — OBMEP</span><span data-l="en">3× Honorable Mention — Brazilian Math Olympiad (OBMEP)</span></li>
+            </ul>
+          </div>
+
+          <div class="edu reveal">
+            <h3 class="mono small-title"><span data-l="pt">Idiomas</span><span data-l="en">Languages</span></h3>
+            <ul class="langs">
+              <li><span><span data-l="pt">Português</span><span data-l="en">Portuguese</span></span><span class="meter" style="--v:1"></span><small><span data-l="pt">Nativo</span><span data-l="en">Native</span></small></li>
+              <li><span><span data-l="pt">Inglês</span><span data-l="en">English</span></span><span class="meter" style="--v:.85"></span><small><span data-l="pt">Profissional pleno</span><span data-l="en">Full professional</span></small></li>
+              <li><span><span data-l="pt">Alemão</span><span data-l="en">German</span></span><span class="meter" style="--v:.5"></span><small><span data-l="pt">Profissional limitado</span><span data-l="en">Limited working</span></small></li>
+              <li><span><span data-l="pt">Espanhol</span><span data-l="en">Spanish</span></span><span class="meter" style="--v:.3"></span><small><span data-l="pt">Básico</span><span data-l="en">Elementary</span></small></li>
+            </ul>
+            <h3 class="mono small-title small-title--gap"><span data-l="pt">Competências</span><span data-l="en">Core skills</span></h3>
+            <ul class="tags tags--plain">
+              <li>Product Strategy</li>
+              <li>Business Strategy</li>
+              <li>Leadership</li>
+              <li>Conflict Resolution</li>
+              <li>Data &amp; AI</li>
+              <li>Agile</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="section contact" id="contato">
+      <div class="wrap contact__inner reveal">
+        <p class="kicker mono">06 — <span data-l="pt">Contato</span><span data-l="en">Contact</span></p>
+        <h2 class="contact__title">
+          <span data-l="pt">Vamos conversar sobre <em>produto</em>, <em>liderança</em> — ou robôs.</span>
+          <span data-l="en">Let's talk <em>product</em>, <em>leadership</em> — or robots.</span>
+        </h2>
+        <a class="contact__mail" href="mailto:iurengineer@gmail.com">iurengineer@gmail.com</a>
+        <div class="contact__links">
+          <a class="link-arrow" href="https://www.linkedin.com/in/iure-rosa/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+          <a class="link-arrow" href="https://github.com/bad-iuiu" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+          <button class="link-arrow link-btn" type="button" id="copyMail"><span data-l="pt">Copiar e-mail</span><span data-l="en">Copy email</span></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <span>© <span id="year">2026</span> Iure Rosa</span>
+      <span class="mono">Rio de Janeiro, BR</span>
+      <a href="#top"><span data-l="pt">Voltar ao topo ↑</span><span data-l="en">Back to top ↑</span></a>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="main.js"></script>
+</body>
+</html>
