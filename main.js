@@ -96,8 +96,8 @@
   if (lvEl) lvEl.textContent = level;
 
   /* ---------- Chiptune: an original 8-bit loop synthesized with Web Audio ----------
-     Browsers block audio until the visitor interacts, so it starts on the first
-     click/key press (unless they muted it before) and loops while the tab is open. */
+     It is on every time the page opens. Browsers may still hold the sound until the
+     visitor's first click/tap/key press; then it plays and loops while the tab is open. */
   var musicBtn = document.getElementById('musicToggle');
   var AudioCtx = window.AudioContext || window.webkitAudioContext;
   var actx = null, master = null, noiseBuf = null, musicOn = false, musicTimer = 0, step = 0, nextTime = 0;
@@ -180,24 +180,29 @@
     musicBtn.classList.toggle('is-on', musicOn);
     musicBtn.setAttribute('aria-pressed', musicOn ? 'true' : 'false');
   }
-  function musicMuted() { try { return localStorage.getItem('music') === 'off'; } catch (e) { return false; } }
-
   if (!AudioCtx && musicBtn) musicBtn.hidden = true;
   if (musicBtn) musicBtn.addEventListener('click', function () {
-    if (musicOn) { stopMusic(); store('music', 'off'); }
-    else { startMusic(); store('music', 'on'); }
+    if (musicOn && actx.state !== 'running') actx.resume(); // still blocked: this click unlocks it
+    else if (musicOn) stopMusic();
+    else startMusic();
   });
 
-  function firstInteraction(e) {
-    document.removeEventListener('pointerdown', firstInteraction);
-    document.removeEventListener('keydown', firstInteraction);
-    if (musicBtn && musicBtn.contains(e.target)) return; // the button handles itself
-    if (musicMuted()) return;
-    startMusic();
-    if (musicOn) showToast(root.dataset.lang === 'en' ? '♪ Music on — tap ♪ to turn it off' : '♪ Música ligada — toque no ♪ para desligar');
+  function unlockAudio() {
+    document.removeEventListener('pointerdown', unlockAudio);
+    document.removeEventListener('keydown', unlockAudio);
+    if (musicOn && actx && actx.state !== 'running') actx.resume();
   }
-  document.addEventListener('pointerdown', firstInteraction);
-  document.addEventListener('keydown', firstInteraction);
+  document.addEventListener('pointerdown', unlockAudio);
+  document.addEventListener('keydown', unlockAudio);
+
+  // Start on page load; announce once the browser actually lets it play
+  startMusic();
+  var musicAnnounced = false;
+  if (actx) actx.addEventListener('statechange', function () {
+    if (musicAnnounced || actx.state !== 'running' || !musicOn) return;
+    musicAnnounced = true;
+    showToast(root.dataset.lang === 'en' ? '♪ Music on — tap ♪ to turn it off' : '♪ Música ligada — toque no ♪ para desligar');
+  });
 
   // Pause while the tab is in the background
   document.addEventListener('visibilitychange', function () {
