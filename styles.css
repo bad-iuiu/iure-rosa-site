@@ -174,6 +174,10 @@ strong { font-weight: 600; }
 html[data-lang="pt"] .chip__opt[data-opt="pt"],
 html[data-lang="en"] .chip__opt[data-opt="en"] { color: var(--ink); font-weight: 600; }
 
+#musicToggle.is-on { border-color: var(--xp); color: var(--xp-ink); }
+#musicToggle.is-on .i-mute { display: none; }
+#musicToggle.is-on svg { animation: bob 0.8s steps(2) infinite; }
+
 .i-moon { display: none; }
 :root[data-theme="dark"] .i-sun { display: none; }
 :root[data-theme="dark"] .i-moon { display: block; }
@@ -598,7 +602,7 @@ html[data-lang="en"] .chip__opt[data-opt="en"] { color: var(--ink); font-weight:
   .js .reveal:not(.is-in) .pips::after { width: calc(var(--n) * 10%); }
   .js .reveal:not(.is-in) .xp__bar span { width: calc(var(--v) * 100%); }
   .pips::after, .xp__bar span { transition: none; }
-  .blink, .dialog__next, .job--featured::before, .levelup, .sheet.is-leveled { animation: none; }
+  .blink, .dialog__next, .job--featured::before, .levelup, .sheet.is-leveled, #musicToggle.is-on svg { animation: none; }
   .pillar:hover, .lead-card:hover, .stat:hover { transform: none; }
 }
 

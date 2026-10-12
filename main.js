@@ -95,6 +95,123 @@
   var level = new Date().getFullYear() - 2017;
   if (lvEl) lvEl.textContent = level;
 
+  /* ---------- Chiptune: an original 8-bit loop synthesized with Web Audio ----------
+     Browsers block audio until the visitor interacts, so it starts on the first
+     click/key press (unless they muted it before) and loops while the tab is open. */
+  var musicBtn = document.getElementById('musicToggle');
+  var AudioCtx = window.AudioContext || window.webkitAudioContext;
+  var actx = null, master = null, noiseBuf = null, musicOn = false, musicTimer = 0, step = 0, nextTime = 0;
+  var STEP = 60 / 150 / 2; // eighth notes at 150 bpm
+
+  // 8 bars of eighth notes, "-" = rest. Progression: C Am F G | C Am F G
+  var LEAD = ('E5 - G5 E5 C5 - D5 E5  A5 - G5 E5 C5 - E5 -  F5 A5 C6 - A5 F5 G5 A5  G5 - D5 - B4 D5 G5 - ' +
+              'E5 G5 C6 - B5 G5 E5 G5  A5 - E5 A5 C6 - B5 A5  F5 - A5 - G5 F5 E5 D5  D5 - G4 B4 D5 - C5 -').split(/\s+/);
+  var BASS_ROOTS = ['C3', 'A2', 'F2', 'G2', 'C3', 'A2', 'F2', 'G2'];
+
+  function midi(name) {
+    var m = /^([A-G])(#?)(\d)$/.exec(name);
+    return { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 }[m[1]] + (m[2] ? 1 : 0) + (parseInt(m[3], 10) + 1) * 12;
+  }
+  function hz(n) { return 440 * Math.pow(2, (n - 69) / 12); }
+
+  function tone(freq, time, dur, type, vol) {
+    var osc = actx.createOscillator(), g = actx.createGain();
+    osc.type = type; osc.frequency.value = freq;
+    g.gain.setValueAtTime(vol, time);
+    g.gain.exponentialRampToValueAtTime(0.0001, time + dur);
+    osc.connect(g); g.connect(master);
+    osc.start(time); osc.stop(time + dur + 0.02);
+  }
+  function hat(time, vol) {
+    var src = actx.createBufferSource(), g = actx.createGain();
+    src.buffer = noiseBuf;
+    g.gain.setValueAtTime(vol, time);
+    g.gain.exponentialRampToValueAtTime(0.0001, time + 0.05);
+    src.connect(g); g.connect(master);
+    src.start(time); src.stop(time + 0.06);
+  }
+
+  function playStep(i, t) {
+    var note = LEAD[i];
+    if (note !== '-') tone(hz(midi(note)), t, STEP * 0.9, 'square', 0.22);
+    if (i % 2 === 0) {
+      // bass alternates root and fifth on each quarter note
+      var root = midi(BASS_ROOTS[Math.floor(i / 8)]);
+      tone(hz(i % 4 === 0 ? root : root + 7), t, STEP * 1.6, 'triangle', 0.5);
+    } else {
+      hat(t, 0.08);
+    }
+  }
+
+  function schedule() {
+    while (nextTime < actx.currentTime + 0.15) {
+      playStep(step, nextTime);
+      step = (step + 1) % LEAD.length;
+      nextTime += STEP;
+    }
+  }
+
+  function startMusic() {
+    if (!AudioCtx || musicOn) return;
+    if (!actx) {
+      actx = new AudioCtx();
+      master = actx.createGain();
+      master.gain.value = 0.12;
+      master.connect(actx.destination);
+      noiseBuf = actx.createBuffer(1, actx.sampleRate * 0.1, actx.sampleRate);
+      var data = noiseBuf.getChannelData(0);
+      for (var n = 0; n < data.length; n++) data[n] = Math.random() * 2 - 1;
+    }
+    actx.resume();
+    musicOn = true;
+    nextTime = actx.currentTime + 0.05;
+    musicTimer = setInterval(schedule, 25);
+    syncMusicBtn();
+  }
+  function stopMusic() {
+    if (!musicOn) return;
+    musicOn = false;
+    clearInterval(musicTimer);
+    actx.suspend();
+    syncMusicBtn();
+  }
+  function syncMusicBtn() {
+    if (!musicBtn) return;
+    musicBtn.classList.toggle('is-on', musicOn);
+    musicBtn.setAttribute('aria-pressed', musicOn ? 'true' : 'false');
+  }
+  function musicMuted() { try { return localStorage.getItem('music') === 'off'; } catch (e) { return false; } }
+
+  if (!AudioCtx && musicBtn) musicBtn.hidden = true;
+  if (musicBtn) musicBtn.addEventListener('click', function () {
+    if (musicOn) { stopMusic(); store('music', 'off'); }
+    else { startMusic(); store('music', 'on'); }
+  });
+
+  function firstInteraction(e) {
+    document.removeEventListener('pointerdown', firstInteraction);
+    document.removeEventListener('keydown', firstInteraction);
+    if (musicBtn && musicBtn.contains(e.target)) return; // the button handles itself
+    if (musicMuted()) return;
+    startMusic();
+    if (musicOn) showToast(root.dataset.lang === 'en' ? '♪ Music on — tap ♪ to turn it off' : '♪ Música ligada — toque no ♪ para desligar');
+  }
+  document.addEventListener('pointerdown', firstInteraction);
+  document.addEventListener('keydown', firstInteraction);
+
+  // Pause while the tab is in the background
+  document.addEventListener('visibilitychange', function () {
+    if (!actx || !musicOn) return;
+    if (document.hidden) { clearInterval(musicTimer); actx.suspend(); }
+    else { actx.resume(); nextTime = actx.currentTime + 0.05; musicTimer = setInterval(schedule, 25); }
+  });
+
+  function levelUpJingle() {
+    if (!actx || !musicOn) return;
+    var t = actx.currentTime + 0.02;
+    ['C5', 'E5', 'G5', 'C6', 'E6', 'G6'].forEach(function (n, k) { tone(hz(midi(n)), t + k * 0.07, 0.12, 'square', 0.3); });
+  }
+
   /* ---------- Konami code easter egg ---------- */
   var konami = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
   var konamiPos = 0;
@@ -115,6 +232,7 @@
       document.body.appendChild(banner);
       setTimeout(function () { banner.remove(); }, 1900);
     }
+    levelUpJingle();
     showToast((root.dataset.lang === 'en' ? 'Level up! Now LV ' : 'Subiu de nível! Agora LV ') + level + ' ★');
   });
 
