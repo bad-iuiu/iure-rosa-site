@@ -90,6 +90,34 @@
 
   document.getElementById('year').textContent = new Date().getFullYear();
 
+  /* ---------- Character level: one level per year since engineering school (2017) ---------- */
+  var lvEl = document.getElementById('lv');
+  var level = new Date().getFullYear() - 2017;
+  if (lvEl) lvEl.textContent = level;
+
+  /* ---------- Konami code easter egg ---------- */
+  var konami = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  var konamiPos = 0;
+  document.addEventListener('keydown', function (e) {
+    var key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+    konamiPos = key === konami[konamiPos] ? konamiPos + 1 : (key === konami[0] ? 1 : 0);
+    if (konamiPos < konami.length) return;
+    konamiPos = 0;
+    level += 1;
+    if (lvEl) lvEl.textContent = level;
+    var sheet = document.getElementById('sheet');
+    if (sheet) { sheet.classList.remove('is-leveled'); void sheet.offsetWidth; sheet.classList.add('is-leveled'); }
+    if (!reduceMotion) {
+      var banner = document.createElement('div');
+      banner.className = 'levelup';
+      banner.setAttribute('aria-hidden', 'true');
+      banner.textContent = 'LEVEL UP!';
+      document.body.appendChild(banner);
+      setTimeout(function () { banner.remove(); }, 1900);
+    }
+    showToast((root.dataset.lang === 'en' ? 'Level up! Now LV ' : 'Subiu de nível! Agora LV ') + level + ' ★');
+  });
+
   /* ---------- Path planner animation ---------- */
   var canvas = document.getElementById('planner');
   var statusEl = document.getElementById('plannerStatus');
@@ -98,7 +126,7 @@
   var COLS = 16, ROWS = 12;
   var state = null, cell = 0, ox = 0, oy = 0, W = 0, H = 0;
 
-  function css(name) { return getComputedStyle(root).getPropertyValue(name).trim(); }
+  function css(name) { return getComputedStyle(canvas).getPropertyValue(name).trim(); }
 
   function resize() {
     var rect = canvas.getBoundingClientRect();
@@ -167,18 +195,9 @@
 
   function center(p) { return { x: ox + (p.x + 0.5) * cell, y: oy + (p.y + 0.5) * cell }; }
 
-  function roundRect(x, y, w, h, r) {
-    ctx.beginPath();
-    ctx.moveTo(x + r, y);
-    ctx.arcTo(x + w, y, x + w, y + h, r);
-    ctx.arcTo(x + w, y + h, x, y + h, r);
-    ctx.arcTo(x, y + h, x, y, r);
-    ctx.arcTo(x, y, x + w, y, r);
-    ctx.closePath();
-  }
 
   function draw(exploredCount, pathProgress) {
-    var c = { grid: css('--grid'), wall: css('--wall'), explored: css('--explored'), accent: css('--accent'), surface: css('--surface'), muted: css('--muted') };
+    var c = { grid: css('--grid'), wall: css('--wall'), explored: css('--explored'), accent: css('--accent'), surface: css('--surface'), xp: css('--xp'), hp: css('--hp') };
     ctx.clearRect(0, 0, W, H);
     var s = state;
 
@@ -191,26 +210,27 @@
     ctx.fillStyle = c.explored;
     for (var i = 0; i < Math.min(exploredCount, s.explored.length); i++) {
       var e = s.explored[i];
-      roundRect(ox + e.x * cell + 2, oy + e.y * cell + 2, cell - 4, cell - 4, 4); ctx.fill();
+      ctx.fillRect(ox + e.x * cell + 1, oy + e.y * cell + 1, cell - 2, cell - 2);
     }
     // walls
     ctx.fillStyle = c.wall;
     for (y = 0; y < ROWS; y++) for (x = 0; x < COLS; x++) {
-      if (s.walls[y][x]) { roundRect(ox + x * cell + 3, oy + y * cell + 3, cell - 6, cell - 6, 3); ctx.fill(); }
+      if (s.walls[y][x]) { ctx.fillRect(ox + x * cell + 2, oy + y * cell + 2, cell - 4, cell - 4); }
     }
-    // goal
-    var gc = center(s.goal);
-    ctx.strokeStyle = c.accent; ctx.lineWidth = 1.5;
-    ctx.beginPath(); ctx.arc(gc.x, gc.y, cell * 0.32, 0, Math.PI * 2); ctx.stroke();
-    ctx.fillStyle = c.accent;
-    ctx.beginPath(); ctx.arc(gc.x, gc.y, cell * 0.12, 0, Math.PI * 2); ctx.fill();
+    // goal: treasure chest
+    var gc = center(s.goal), gs = cell * 0.62;
+    ctx.fillStyle = c.xp;
+    ctx.fillRect(gc.x - gs / 2, gc.y - gs / 2.6, gs, gs / 1.3);
+    ctx.fillStyle = c.wall;
+    ctx.fillRect(gc.x - gs / 2, gc.y - gs / 12, gs, Math.max(1.5, gs / 9));
+    ctx.fillRect(gc.x - gs / 10, gc.y - gs / 7, gs / 5, gs / 4);
 
     // path
     var robot = center(s.start);
     if (pathProgress > 0) {
       var segs = s.path.length - 1;
       var t = pathProgress * segs;
-      ctx.strokeStyle = c.accent; ctx.lineWidth = 2.5; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.strokeStyle = c.accent; ctx.lineWidth = 3; ctx.lineCap = 'square'; ctx.lineJoin = 'miter';
       ctx.beginPath();
       var p0 = center(s.path[0]); ctx.moveTo(p0.x, p0.y);
       for (var j = 1; j <= Math.floor(t) && j <= segs; j++) { var pj = center(s.path[j]); ctx.lineTo(pj.x, pj.y); }
@@ -220,11 +240,12 @@
       ctx.lineTo(robot.x, robot.y);
       ctx.stroke();
     }
-    // robot
-    ctx.fillStyle = c.surface; ctx.strokeStyle = c.accent; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.arc(robot.x, robot.y, cell * 0.3, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-    ctx.fillStyle = c.accent;
-    ctx.beginPath(); ctx.arc(robot.x, robot.y, cell * 0.11, 0, Math.PI * 2); ctx.fill();
+    // hero
+    var hs = cell * 0.6;
+    ctx.fillStyle = c.hp;
+    ctx.fillRect(robot.x - hs / 2, robot.y - hs / 2, hs, hs);
+    ctx.fillStyle = c.surface;
+    ctx.fillRect(robot.x - hs / 4, robot.y - hs / 4, hs / 2, hs / 2);
   }
 
   function setStatus(txt) { if (statusEl) statusEl.textContent = txt; }
@@ -235,7 +256,7 @@
   function newEpisode(now) {
     state = makeWorld();
     phase = 'explore'; phaseStart = now;
-    setStatus('searching…');
+    setStatus('exploring…');
   }
 
   function frame(now) {
@@ -249,7 +270,7 @@
       var p = Math.min(1, t / PATH_MS);
       var eased = 1 - Math.pow(1 - p, 3);
       draw(state.explored.length, eased);
-      if (p >= 1) { phase = 'hold'; phaseStart = now; setStatus('goal reached ✓'); }
+      if (p >= 1) { phase = 'hold'; phaseStart = now; setStatus('treasure found ✦'); }
     } else {
       draw(state.explored.length, 1);
       if (t >= HOLD_MS) newEpisode(now);

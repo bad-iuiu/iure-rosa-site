@@ -8,11 +8,11 @@
   <meta property="og:title" content="Iure Rosa — Senior Product Owner">
   <meta property="og:description" content="Produto, Data & AI e liderança de times. Engenheiro e pesquisador de robótica de formação.">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#f6f4ef">
+  <meta name="theme-color" content="#fbf7ee">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script>
     // Apply saved preferences before paint to avoid a flash
@@ -32,21 +32,21 @@
         <span class="brand__name">Iure Rosa</span>
       </a>
       <nav class="nav__links" aria-label="Seções">
-        <a href="#sobre"><span data-l="pt">Sobre</span><span data-l="en">About</span></a>
-        <a href="#trajetoria"><span data-l="pt">Trajetória</span><span data-l="en">Experience</span></a>
-        <a href="#lideranca"><span data-l="pt">Liderança</span><span data-l="en">Leadership</span></a>
-        <a href="#pesquisa"><span data-l="pt">Pesquisa</span><span data-l="en">Research</span></a>
-        <a href="#formacao"><span data-l="pt">Formação</span><span data-l="en">Education</span></a>
+        <a href="#sobre"><span data-l="pt">Personagem</span><span data-l="en">Character</span></a>
+        <a href="#trajetoria">Quests</a>
+        <a href="#lideranca"><span data-l="pt">Guildas</span><span data-l="en">Guilds</span></a>
+        <a href="#pesquisa"><span data-l="pt">Grimório</span><span data-l="en">Grimoire</span></a>
+        <a href="#formacao"><span data-l="pt">Inventário</span><span data-l="en">Inventory</span></a>
       </nav>
       <div class="nav__tools">
         <button class="chip" id="langToggle" type="button" aria-label="Mudar idioma / Change language">
           <span class="chip__opt" data-opt="pt">PT</span><span class="chip__sep">/</span><span class="chip__opt" data-opt="en">EN</span>
         </button>
         <button class="icon-btn" id="themeToggle" type="button" aria-label="Alternar tema">
-          <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg>
+          <svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
         </button>
-        <a class="btn btn--sm" href="#contato"><span data-l="pt">Contato</span><span data-l="en">Contact</span></a>
+        <a class="btn btn--sm" href="#contato"><span data-l="pt">Entrar na party</span><span data-l="en">Join the party</span></a>
       </div>
     </div>
   </header>
@@ -56,7 +56,7 @@
     <section class="hero">
       <div class="wrap hero__grid">
         <div class="hero__text">
-          <p class="eyebrow reveal"><span class="dot"></span>Senior Product Owner · Globo · Rio de Janeiro</p>
+          <p class="eyebrow reveal"><span class="blink" aria-hidden="true">▶</span>Player 1 · Senior Product Owner · Globo · Rio de Janeiro</p>
           <h1 class="hero__title reveal">
             <span data-l="pt">Produto, dados e IA —<br><em>com pessoas no centro.</em></span>
             <span data-l="en">Product, data and AI —<br><em>with people at the center.</em></span>
@@ -66,40 +66,69 @@
             <span data-l="en">I'm Iure. I lead product strategy across Data &amp; AI, Monetization and AdTech within Globo's DevOps &amp; SRE organization. An engineer and robotics researcher by training, I now build products — and teams — that connect business and technology.</span>
           </p>
           <div class="hero__cta reveal">
-            <a class="btn" href="mailto:iurengineer@gmail.com"><span data-l="pt">Vamos conversar</span><span data-l="en">Let's talk</span> <span aria-hidden="true">→</span></a>
+            <a class="btn" href="mailto:iurengineer@gmail.com"><span data-l="pt">Iniciar conversa</span><span data-l="en">Start a conversation</span> <span aria-hidden="true">▶</span></a>
             <a class="btn btn--ghost" href="https://www.linkedin.com/in/iure-rosa/" target="_blank" rel="noopener">LinkedIn</a>
           </div>
         </div>
 
-        <figure class="planner reveal" aria-label="Animação de planejamento de caminho">
-          <div class="planner__bar">
-            <span class="planner__dots"><i></i><i></i><i></i></span>
-            <span class="mono">path_planner.py</span>
-            <span class="mono planner__status" id="plannerStatus">searching…</span>
+        <!-- Character sheet -->
+        <aside class="sheet panel reveal" id="sheet" aria-label="Ficha de personagem / Character sheet">
+          <div class="sheet__top">
+            <span class="sheet__avatar" aria-hidden="true">IR</span>
+            <div class="sheet__who">
+              <p class="sheet__name">Iure Rosa</p>
+              <p class="sheet__class"><span data-l="pt">Classe:</span><span data-l="en">Class:</span> Senior Product Owner</p>
+            </div>
+            <p class="sheet__lv"><small>LV</small><b id="lv">9</b></p>
           </div>
-          <canvas id="planner" aria-hidden="true"></canvas>
-          <figcaption class="planner__cap mono">
-            <span data-l="pt">// planejamento de caminho em grid — uma homenagem aos anos de pesquisa em robótica</span>
-            <span data-l="en">// grid path planning — a nod to my years of robotics research</span>
-          </figcaption>
-        </figure>
+
+          <dl class="sheet__info">
+            <div><dt><span data-l="pt">Guilda</span><span data-l="en">Guild</span></dt><dd>Globo · DevOps &amp; SRE</dd></div>
+            <div><dt><span data-l="pt">Origem</span><span data-l="en">Origin</span></dt><dd><span data-l="pt">Eng. Elétrica &amp; Robótica · UFV</span><span data-l="en">Electrical Eng. &amp; Robotics · UFV</span></dd></div>
+            <div><dt>Base</dt><dd>Rio de Janeiro</dd></div>
+          </dl>
+
+          <p class="sheet__label"><span data-l="pt">Atributos</span><span data-l="en">Attributes</span></p>
+          <ul class="attrs">
+            <li style="--c: var(--xp)"><span><span data-l="pt">Produto</span><span data-l="en">Product</span></span><span class="pips" style="--n:9" role="img" aria-label="9/10"></span></li>
+            <li style="--c: var(--hp)"><span><span data-l="pt">Liderança</span><span data-l="en">Leadership</span></span><span class="pips" style="--n:9" role="img" aria-label="9/10"></span></li>
+            <li style="--c: var(--mp)"><span><span data-l="pt">Dados &amp; IA</span><span data-l="en">Data &amp; AI</span></span><span class="pips" style="--n:8" role="img" aria-label="8/10"></span></li>
+            <li style="--c: var(--uncommon)"><span><span data-l="pt">Engenharia</span><span data-l="en">Engineering</span></span><span class="pips" style="--n:8" role="img" aria-label="8/10"></span></li>
+            <li style="--c: var(--epic)"><span><span data-l="pt">Pesquisa</span><span data-l="en">Research</span></span><span class="pips" style="--n:9" role="img" aria-label="9/10"></span></li>
+          </ul>
+
+          <div class="sheet__quest">
+            <p class="sheet__label"><span data-l="pt">✦ Quest atual</span><span data-l="en">✦ Current quest</span></p>
+            <p><span data-l="pt">Data &amp; AI, Monetização e AdTech na Globo</span><span data-l="en">Data &amp; AI, Monetization and AdTech at Globo</span></p>
+          </div>
+
+          <div class="xp">
+            <div class="xp__head">
+              <span>XP</span>
+              <span><span data-l="pt">Próximo nível: Liderança de Tecnologia &amp; Produto</span><span data-l="en">Next level: Technology &amp; Product Leadership</span></span>
+            </div>
+            <div class="xp__bar" role="img" aria-label="72%"><span style="--v:.72"></span></div>
+          </div>
+        </aside>
       </div>
 
+      <!-- Achievements -->
       <div class="wrap">
+        <p class="ach__title reveal"><span data-l="pt">★ Conquistas desbloqueadas</span><span data-l="en">★ Achievements unlocked</span></p>
         <dl class="stats reveal">
-          <div class="stat">
-            <dt><span data-l="pt">De trainee a Senior PO na Globo</span><span data-l="en">From trainee to Senior PO at Globo</span></dt>
+          <div class="stat" data-icon="»" style="--c: var(--xp)">
+            <dt><span data-l="pt">Speedrun: de trainee a Senior PO na Globo</span><span data-l="en">Speedrun: from trainee to Senior PO at Globo</span></dt>
             <dd>19 <small><span data-l="pt">meses</span><span data-l="en">months</span></small></dd>
           </div>
-          <div class="stat">
+          <div class="stat" data-icon="✦" style="--c: var(--epic)">
             <dt><span data-l="pt">De pesquisa em IA e robótica</span><span data-l="en">Of AI &amp; robotics research</span></dt>
             <dd>5 <small><span data-l="pt">anos</span><span data-l="en">years</span></small></dd>
           </div>
-          <div class="stat">
+          <div class="stat" data-icon="◆" style="--c: var(--mp)">
             <dt><span data-l="pt">Artigos científicos publicados</span><span data-l="en">Scientific papers published</span></dt>
             <dd>4</dd>
           </div>
-          <div class="stat">
+          <div class="stat" data-icon="♦" style="--c: var(--hp)">
             <dt><span data-l="pt">Idiomas — PT, EN, DE, ES</span><span data-l="en">Languages — PT, EN, DE, ES</span></dt>
             <dd>4</dd>
           </div>
@@ -107,11 +136,11 @@
       </div>
     </section>
 
-    <!-- SOBRE -->
+    <!-- PERSONAGEM / SOBRE -->
     <section class="section" id="sobre">
       <div class="wrap two-col">
         <header class="section__head reveal">
-          <p class="kicker mono">01 — <span data-l="pt">Sobre</span><span data-l="en">About</span></p>
+          <p class="kicker">01 · <span data-l="pt">Personagem</span><span data-l="en">Character</span></p>
           <h2 class="section__title">
             <span data-l="pt">Tecnologia gera mais valor quando <em>conecta pessoas</em>, negócio e inovação.</span>
             <span data-l="en">Technology creates the most value when it <em>connects people</em>, business and innovation.</span>
@@ -128,19 +157,20 @@
       </div>
 
       <div class="wrap">
+        <p class="sub-kicker reveal"><span data-l="pt">Árvore de skills</span><span data-l="en">Skill tree</span></p>
         <ul class="pillars">
-          <li class="pillar reveal">
-            <span class="pillar__num mono">A</span>
+          <li class="pillar panel reveal" style="--c: var(--xp)">
+            <span class="pillar__num" aria-hidden="true">◆</span>
             <h3><span data-l="pt">Produto &amp; Estratégia</span><span data-l="en">Product &amp; Strategy</span></h3>
             <p><span data-l="pt">Visão, roadmap e priorização em múltiplos squads. Portfólio, governança e rastreabilidade ponta a ponta, com métricas que apoiam decisões executivas.</span><span data-l="en">Vision, roadmap and prioritization across multiple squads. Portfolio, governance and end-to-end traceability, with metrics that support executive decisions.</span></p>
           </li>
-          <li class="pillar reveal">
-            <span class="pillar__num mono">B</span>
+          <li class="pillar panel reveal" style="--c: var(--hp)">
+            <span class="pillar__num" aria-hidden="true">♥</span>
             <h3><span data-l="pt">Pessoas &amp; Liderança</span><span data-l="en">People &amp; Leadership</span></h3>
             <p><span data-l="pt">Alinhar stakeholders em torno de valor, mediar conflitos e desenvolver times. Liderança exercida desde a universidade — à frente do Engenheiros Sem Fronteiras e do Centro Acadêmico.</span><span data-l="en">Aligning stakeholders around value, resolving conflicts and growing teams. Leadership practiced since university — heading Engineers Without Borders and the student association.</span></p>
           </li>
-          <li class="pillar reveal">
-            <span class="pillar__num mono">C</span>
+          <li class="pillar panel reveal" style="--c: var(--mp)">
+            <span class="pillar__num" aria-hidden="true">⚡</span>
             <h3><span data-l="pt">IA &amp; Engenharia</span><span data-l="en">AI &amp; Engineering</span></h3>
             <p><span data-l="pt">Da pesquisa em aprendizado por reforço à prática de engenharia de IA. Hoje, explorando como agentes inteligentes vão redesenhar a forma como software é construído e operado.</span><span data-l="en">From reinforcement learning research to AI engineering practice. Now exploring how intelligent agents will reshape the way software is built and operated.</span></p>
           </li>
@@ -148,21 +178,22 @@
       </div>
 
       <div class="wrap">
-        <aside class="callout reveal">
-          <p class="kicker mono"><span data-l="pt">Pensando agora</span><span data-l="en">Currently thinking about</span></p>
-          <p class="callout__text">
+        <aside class="dialog reveal">
+          <p class="dialog__name">Iure · <span data-l="pt">pensando agora</span><span data-l="en">currently thinking</span></p>
+          <p class="dialog__text">
             <span data-l="pt">“A próxima geração de organizações de tecnologia não vai apenas adotar IA como mais uma ferramenta — vai repensar como pessoas, produtos, processos e agentes inteligentes colaboram.”</span>
             <span data-l="en">“The next generation of technology organizations won't simply adopt AI as another tool — they'll rethink how people, products, processes and intelligent agents collaborate.”</span>
           </p>
+          <span class="dialog__next" aria-hidden="true">▼</span>
         </aside>
       </div>
     </section>
 
-    <!-- TRAJETÓRIA -->
+    <!-- QUESTS / TRAJETÓRIA -->
     <section class="section section--alt" id="trajetoria">
       <div class="wrap">
         <header class="section__head reveal">
-          <p class="kicker mono">02 — <span data-l="pt">Trajetória</span><span data-l="en">Experience</span></p>
+          <p class="kicker">02 · Quest log</p>
           <h2 class="section__title">
             <span data-l="pt">Da robótica ao <em>produto</em>.</span>
             <span data-l="en">From robotics to <em>product</em>.</span>
@@ -172,6 +203,7 @@
         <ol class="timeline">
           <li class="job job--featured reveal">
             <div class="job__meta">
+              <span class="qtag qtag--active"><span data-l="pt">Em andamento</span><span data-l="en">In progress</span></span>
               <span class="mono">2025 — <span data-l="pt">hoje</span><span data-l="en">now</span></span>
               <span class="job__place">Rio de Janeiro</span>
             </div>
@@ -204,6 +236,7 @@
 
           <li class="job reveal">
             <div class="job__meta">
+              <span class="qtag"><span data-l="pt">✓ Concluída</span><span data-l="en">✓ Completed</span></span>
               <span class="mono">2023 — 2025</span>
               <span class="job__place">Vinhedo, SP</span>
             </div>
@@ -220,6 +253,7 @@
 
           <li class="job reveal">
             <div class="job__meta">
+              <span class="qtag"><span data-l="pt">✓ Concluída</span><span data-l="en">✓ Completed</span></span>
               <span class="mono">2020 — 2024</span>
               <span class="job__place">Viçosa, MG</span>
             </div>
@@ -243,6 +277,7 @@
 
           <li class="job reveal">
             <div class="job__meta">
+              <span class="qtag"><span data-l="pt">✓ Concluída</span><span data-l="en">✓ Completed</span></span>
               <span class="mono">2022 — 2023</span>
               <span class="job__place">Viçosa, MG</span>
             </div>
@@ -260,6 +295,7 @@
 
           <li class="job reveal">
             <div class="job__meta">
+              <span class="qtag"><span data-l="pt">✓ Concluída</span><span data-l="en">✓ Completed</span></span>
               <span class="mono">2021 — 2022</span>
               <span class="job__place">Ouro Branco, MG</span>
             </div>
@@ -278,11 +314,11 @@
       </div>
     </section>
 
-    <!-- LIDERANÇA -->
+    <!-- GUILDAS / LIDERANÇA -->
     <section class="section" id="lideranca">
       <div class="wrap two-col">
         <header class="section__head reveal">
-          <p class="kicker mono">03 — <span data-l="pt">Liderança</span><span data-l="en">Leadership</span></p>
+          <p class="kicker">03 · <span data-l="pt">Guildas</span><span data-l="en">Guilds</span></p>
           <h2 class="section__title">
             <span data-l="pt">Liderar pessoas <em>antes</em> de liderar produtos.</span>
             <span data-l="en">Leading people <em>before</em> leading products.</span>
@@ -294,23 +330,23 @@
         </header>
 
         <div class="lead-cards">
-          <article class="lead-card reveal">
-            <p class="mono lead-card__date">2020 — 2023</p>
+          <article class="lead-card panel reveal" style="--c: var(--hp)">
+            <p class="lead-card__date">2020 — 2023</p>
             <h3><span data-l="pt">Engenheiros Sem Fronteiras — Núcleo Viçosa</span><span data-l="en">Engineers Without Borders — Viçosa Chapter</span></h3>
             <p class="lead-card__path">
-              <span data-l="pt">Assessor de Comunicação → Assessor Geral → <strong>Diretor Geral</strong></span>
-              <span data-l="en">Communications Advisor → General Advisor → <strong>Executive Director</strong></span>
+              <span data-l="pt">Assessor de Comunicação ▸ Assessor Geral ▸ <strong>Diretor Geral</strong></span>
+              <span data-l="en">Communications Advisor ▸ General Advisor ▸ <strong>Executive Director</strong></span>
             </p>
             <p><span data-l="pt">Planejamento estratégico da gestão, acompanhamento de objetivos com medidas corretivas e apoio a todas as diretorias para garantir alinhamento e integração da organização.</span><span data-l="en">Led strategic planning, tracked goals with corrective actions and supported every board area to keep the organization aligned and integrated.</span></p>
           </article>
-          <article class="lead-card reveal">
-            <p class="mono lead-card__date">2019 — 2022</p>
+          <article class="lead-card panel reveal" style="--c: var(--mp)">
+            <p class="lead-card__date">2019 — 2022</p>
             <h3><span data-l="pt">Centro Acadêmico de Engenharia Elétrica — CAELT UFV</span><span data-l="en">Electrical Engineering Student Association — CAELT UFV</span></h3>
             <p class="lead-card__path"><strong><span data-l="pt">Diretor Geral</span><span data-l="en">President</span></strong></p>
             <p><span data-l="pt">Representação do corpo discente frente à coordenação do curso por dois anos e meio.</span><span data-l="en">Represented the student body before the program's leadership for two and a half years.</span></p>
           </article>
-          <article class="lead-card reveal">
-            <p class="mono lead-card__date">2019</p>
+          <article class="lead-card panel reveal" style="--c: var(--uncommon)">
+            <p class="lead-card__date">2019</p>
             <h3><span data-l="pt">Universidade Federal de Viçosa</span><span data-l="en">Federal University of Viçosa</span></h3>
             <p class="lead-card__path"><strong><span data-l="pt">Estudante-tutor &amp; monitor</span><span data-l="en">Student tutor &amp; teaching assistant</span></strong></p>
             <p><span data-l="pt">Monitoria de Equações Diferenciais Ordinárias e de minicursos de interfaces gráficas em Python e AltoQi Lumine.</span><span data-l="en">Tutored Ordinary Differential Equations and assisted short courses on Python GUIs and AltoQi Lumine.</span></p>
@@ -319,11 +355,11 @@
       </div>
     </section>
 
-    <!-- PESQUISA -->
-    <section class="section section--ink" id="pesquisa">
+    <!-- GRIMÓRIO / PESQUISA -->
+    <section class="section section--night" id="pesquisa">
       <div class="wrap">
         <header class="section__head reveal">
-          <p class="kicker mono">04 — <span data-l="pt">Robótica &amp; IA</span><span data-l="en">Robotics &amp; AI</span></p>
+          <p class="kicker">04 · <span data-l="pt">Grimório — Robótica &amp; IA</span><span data-l="en">Grimoire — Robotics &amp; AI</span></p>
           <h2 class="section__title">
             <span data-l="pt">A paixão que <em>continua</em>.</span>
             <span data-l="en">The passion that <em>stays</em>.</span>
@@ -335,42 +371,57 @@
         </header>
 
         <div class="research">
-          <div class="research__themes reveal">
-            <h3 class="mono small-title"><span data-l="pt">Temas</span><span data-l="en">Themes</span></h3>
-            <ul class="tags">
-              <li>Reinforcement Learning</li>
-              <li>Q-Learning</li>
-              <li>Curriculum Learning</li>
-              <li>UAV Path Planning</li>
-              <li>Multi-robot Systems</li>
-              <li>Hybrid Dynamical Systems</li>
-              <li>ROS · Gazebo</li>
-              <li>Python</li>
-            </ul>
-            <div class="research__links">
-              <a class="link-arrow" href="https://github.com/bad-iuiu" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
-              <a class="link-arrow" href="https://www.researchgate.net/profile/Iure-Oliveira/research" target="_blank" rel="noopener">ResearchGate <span aria-hidden="true">↗</span></a>
+          <figure class="planner panel reveal" aria-label="Animação de planejamento de caminho">
+            <div class="planner__bar">
+              <span class="planner__title">◆ minimap</span>
+              <span class="mono">path_planner.py</span>
+              <span class="mono planner__status" id="plannerStatus">exploring…</span>
             </div>
-          </div>
+            <canvas id="planner" aria-hidden="true"></canvas>
+            <figcaption class="planner__cap mono">
+              <span data-l="pt">// A* em grid achando o tesouro — uma homenagem aos anos de pesquisa em robótica</span>
+              <span data-l="en">// A* on a grid hunting for treasure — a nod to my years of robotics research</span>
+            </figcaption>
+          </figure>
 
-          <div class="research__pubs reveal">
-            <h3 class="mono small-title"><span data-l="pt">Publicações</span><span data-l="en">Publications</span></h3>
-            <ol class="pubs">
-              <li><span class="pubs__n mono">01</span><span>UAV Navigation in 3D Urban Environments with Curriculum-based Reinforcement Learning</span></li>
-              <li><span class="pubs__n mono">02</span><span>A 3D Q-Learning Algorithm for Offline UAV Path Planning with Priority Shifting Rewards</span></li>
-              <li><span class="pubs__n mono">03</span><span>An Offline Path Planning Method for UAVs Using Priority Shifting</span></li>
-              <li><span class="pubs__n mono">04</span><span lang="pt-BR">Aplicação de Técnicas Q-Routing no Planejamento de Caminhos de Robôs Móveis</span></li>
-            </ol>
+          <div class="research__side">
+            <div class="reveal">
+              <h3 class="small-title"><span data-l="pt">Runas dominadas</span><span data-l="en">Runes mastered</span></h3>
+              <ul class="tags">
+                <li>Reinforcement Learning</li>
+                <li>Q-Learning</li>
+                <li>Curriculum Learning</li>
+                <li>UAV Path Planning</li>
+                <li>Multi-robot Systems</li>
+                <li>Hybrid Dynamical Systems</li>
+                <li>ROS · Gazebo</li>
+                <li>Python</li>
+              </ul>
+              <div class="research__links">
+                <a class="link-arrow" href="https://github.com/bad-iuiu" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+                <a class="link-arrow" href="https://www.researchgate.net/profile/Iure-Oliveira/research" target="_blank" rel="noopener">ResearchGate <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+
+            <div class="reveal">
+              <h3 class="small-title small-title--gap"><span data-l="pt">Tomos publicados</span><span data-l="en">Published tomes</span></h3>
+              <ol class="pubs">
+                <li><span class="pubs__n">I</span><span>UAV Navigation in 3D Urban Environments with Curriculum-based Reinforcement Learning</span></li>
+                <li><span class="pubs__n">II</span><span>A 3D Q-Learning Algorithm for Offline UAV Path Planning with Priority Shifting Rewards</span></li>
+                <li><span class="pubs__n">III</span><span>An Offline Path Planning Method for UAVs Using Priority Shifting</span></li>
+                <li><span class="pubs__n">IV</span><span lang="pt-BR">Aplicação de Técnicas Q-Routing no Planejamento de Caminhos de Robôs Móveis</span></li>
+              </ol>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FORMAÇÃO -->
+    <!-- INVENTÁRIO / FORMAÇÃO -->
     <section class="section" id="formacao">
       <div class="wrap">
         <header class="section__head reveal">
-          <p class="kicker mono">05 — <span data-l="pt">Formação</span><span data-l="en">Education</span></p>
+          <p class="kicker">05 · <span data-l="pt">Inventário</span><span data-l="en">Inventory</span></p>
           <h2 class="section__title">
             <span data-l="pt">Base sólida, <em>aprendizado contínuo</em>.</span>
             <span data-l="en">Solid foundations, <em>continuous learning</em>.</span>
@@ -378,26 +429,29 @@
         </header>
 
         <div class="edu-grid">
-          <div class="edu reveal">
-            <h3 class="mono small-title"><span data-l="pt">Acadêmica</span><span data-l="en">Academic</span></h3>
-            <ul class="edu__list">
-              <li>
+          <div class="edu panel reveal">
+            <h3 class="small-title"><span data-l="pt">Formação acadêmica</span><span data-l="en">Academic gear</span></h3>
+            <ul class="items">
+              <li class="item" style="--r: var(--epic)">
+                <span class="item__rarity"><span data-l="pt">Épico</span><span data-l="en">Epic</span></span>
                 <strong><span data-l="pt">Mestrado em Ciência da Computação</span><span data-l="en">Master's, Computer Science</span></strong>
                 <span><span data-l="pt">Universidade Federal de Viçosa</span><span data-l="en">Federal University of Viçosa</span> · 2023 — 2024</span>
               </li>
-              <li>
+              <li class="item" style="--r: var(--rare)">
+                <span class="item__rarity"><span data-l="pt">Raro</span><span data-l="en">Rare</span></span>
                 <strong><span data-l="pt">Bacharelado em Engenharia Elétrica, ênfase em Robótica</span><span data-l="en">B.Eng. Electrical Engineering, Robotics track</span></strong>
                 <span><span data-l="pt">Universidade Federal de Viçosa</span><span data-l="en">Federal University of Viçosa</span> · 2017 — 2022</span>
               </li>
-              <li>
+              <li class="item" style="--r: var(--uncommon)">
+                <span class="item__rarity"><span data-l="pt">Incomum</span><span data-l="en">Uncommon</span></span>
                 <strong><span data-l="pt">Bootcamp Analista de Machine Learning</span><span data-l="en">Machine Learning Analyst Bootcamp</span></strong>
                 <span>IGTI · 2020</span>
               </li>
             </ul>
           </div>
 
-          <div class="edu reveal">
-            <h3 class="mono small-title"><span data-l="pt">Certificações</span><span data-l="en">Certifications</span></h3>
+          <div class="edu panel reveal">
+            <h3 class="small-title"><span data-l="pt">Pergaminhos · certificações</span><span data-l="en">Scrolls · certifications</span></h3>
             <ul class="edu__plain">
               <li>Robotics: Aerial Robotics</li>
               <li>Neural Networks and Deep Learning</li>
@@ -405,21 +459,24 @@
               <li>How to Write and Publish a Scientific Paper</li>
               <li>MATLAB Onramp</li>
             </ul>
-            <h3 class="mono small-title small-title--gap"><span data-l="pt">Reconhecimentos</span><span data-l="en">Honors</span></h3>
-            <ul class="edu__plain">
-              <li><span data-l="pt">3× Menção Honrosa — OBMEP</span><span data-l="en">3× Honorable Mention — Brazilian Math Olympiad (OBMEP)</span></li>
+            <h3 class="small-title small-title--gap"><span data-l="pt">Troféus</span><span data-l="en">Trophies</span></h3>
+            <ul class="items">
+              <li class="item" style="--r: var(--legend)">
+                <span class="item__rarity"><span data-l="pt">Lendário</span><span data-l="en">Legendary</span></span>
+                <strong><span data-l="pt">3× Menção Honrosa — OBMEP</span><span data-l="en">3× Honorable Mention — Brazilian Math Olympiad (OBMEP)</span></strong>
+              </li>
             </ul>
           </div>
 
-          <div class="edu reveal">
-            <h3 class="mono small-title"><span data-l="pt">Idiomas</span><span data-l="en">Languages</span></h3>
+          <div class="edu panel reveal">
+            <h3 class="small-title"><span data-l="pt">Idiomas</span><span data-l="en">Languages</span></h3>
             <ul class="langs">
-              <li><span><span data-l="pt">Português</span><span data-l="en">Portuguese</span></span><span class="meter" style="--v:1"></span><small><span data-l="pt">Nativo</span><span data-l="en">Native</span></small></li>
-              <li><span><span data-l="pt">Inglês</span><span data-l="en">English</span></span><span class="meter" style="--v:.85"></span><small><span data-l="pt">Profissional pleno</span><span data-l="en">Full professional</span></small></li>
-              <li><span><span data-l="pt">Alemão</span><span data-l="en">German</span></span><span class="meter" style="--v:.5"></span><small><span data-l="pt">Profissional limitado</span><span data-l="en">Limited working</span></small></li>
-              <li><span><span data-l="pt">Espanhol</span><span data-l="en">Spanish</span></span><span class="meter" style="--v:.3"></span><small><span data-l="pt">Básico</span><span data-l="en">Elementary</span></small></li>
+              <li style="--c: var(--xp)"><span><span data-l="pt">Português</span><span data-l="en">Portuguese</span></span><span class="pips" style="--n:10" role="img" aria-label="10/10"></span><small><span data-l="pt">Nativo</span><span data-l="en">Native</span></small></li>
+              <li style="--c: var(--mp)"><span><span data-l="pt">Inglês</span><span data-l="en">English</span></span><span class="pips" style="--n:8" role="img" aria-label="8/10"></span><small><span data-l="pt">Profissional pleno</span><span data-l="en">Full professional</span></small></li>
+              <li style="--c: var(--hp)"><span><span data-l="pt">Alemão</span><span data-l="en">German</span></span><span class="pips" style="--n:5" role="img" aria-label="5/10"></span><small><span data-l="pt">Profissional limitado</span><span data-l="en">Limited working</span></small></li>
+              <li style="--c: var(--uncommon)"><span><span data-l="pt">Espanhol</span><span data-l="en">Spanish</span></span><span class="pips" style="--n:3" role="img" aria-label="3/10"></span><small><span data-l="pt">Básico</span><span data-l="en">Elementary</span></small></li>
             </ul>
-            <h3 class="mono small-title small-title--gap"><span data-l="pt">Competências</span><span data-l="en">Core skills</span></h3>
+            <h3 class="small-title small-title--gap"><span data-l="pt">Habilidades passivas</span><span data-l="en">Passive skills</span></h3>
             <ul class="tags tags--plain">
               <li>Product Strategy</li>
               <li>Business Strategy</li>
@@ -433,10 +490,10 @@
       </div>
     </section>
 
-    <!-- CONTATO -->
+    <!-- PARTY / CONTATO -->
     <section class="section contact" id="contato">
       <div class="wrap contact__inner reveal">
-        <p class="kicker mono">06 — <span data-l="pt">Contato</span><span data-l="en">Contact</span></p>
+        <p class="kicker">06 · <span data-l="pt">Entrar na party</span><span data-l="en">Join the party</span></p>
         <h2 class="contact__title">
           <span data-l="pt">Vamos conversar sobre <em>produto</em>, <em>liderança</em> — ou robôs.</span>
           <span data-l="en">Let's talk <em>product</em>, <em>leadership</em> — or robots.</span>
@@ -454,8 +511,8 @@
   <footer class="footer">
     <div class="wrap footer__inner">
       <span>© <span id="year">2026</span> Iure Rosa</span>
-      <span class="mono">Rio de Janeiro, BR</span>
-      <a href="#top"><span data-l="pt">Voltar ao topo ↑</span><span data-l="en">Back to top ↑</span></a>
+      <span class="mono footer__cheat" title="Konami code">↑ ↑ ↓ ↓ ← → ← → B A</span>
+      <a href="#top"><span data-l="pt">Voltar ao spawn ↑</span><span data-l="en">Back to spawn ↑</span></a>
     </div>
   </footer>
 
