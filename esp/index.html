@@ -2,13 +2,14 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="robots" content="noindex, nofollow">
-  <title>Uma pergunta 💌</title>
+  <meta name="theme-color" content="#ffe4ea">
+  <title>Pra Mari 💌</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Nunito:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Nunito:wght@500;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg1: #fff1f3;
@@ -17,7 +18,7 @@
       --soft: #8a5566;
       --rose: #e8506f;
       --rose-dark: #c9385a;
-      --card: rgba(255, 255, 255, 0.78);
+      --card: rgba(255, 255, 255, 0.82);
     }
     * { box-sizing: border-box; }
     html, body { height: 100%; margin: 0; }
@@ -27,24 +28,34 @@
       background: radial-gradient(circle at 20% 15%, #ffd6df 0, transparent 45%),
                   radial-gradient(circle at 85% 85%, #ffd9c7 0, transparent 40%),
                   linear-gradient(160deg, var(--bg1), var(--bg2));
+      min-height: 100dvh;
       display: grid;
       grid-template-columns: minmax(0, 1fr);
       place-items: center;
       padding: 16px;
       overflow: hidden;
       -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
       user-select: none;
+      touch-action: manipulation;
     }
     .card {
       position: relative;
-      width: min(440px, 100%);
+      width: min(420px, 100%);
       background: var(--card);
+      -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
       border-radius: 28px;
-      padding: 40px 28px 36px;
+      padding: 36px 24px 32px;
       text-align: center;
       box-shadow: 0 20px 60px rgba(201, 56, 90, 0.18);
       z-index: 1;
+    }
+    .etapa { display: none; }
+    .etapa.ativa { display: block; animation: pop .5s ease; }
+    @keyframes pop {
+      from { opacity: 0; transform: translateY(10px) scale(.96); }
+      to { opacity: 1; transform: none; }
     }
     .emoji {
       font-size: 64px;
@@ -61,12 +72,37 @@
     h1 {
       font-family: "Fraunces", Georgia, serif;
       font-weight: 500;
-      font-size: clamp(30px, 8vw, 40px);
+      font-size: clamp(30px, 8.5vw, 40px);
       line-height: 1.15;
-      margin: 20px 0 8px;
+      margin: 18px 0 8px;
     }
     h1 em { color: var(--rose); }
-    p.sub { color: var(--soft); margin: 0 0 32px; font-size: 17px; }
+    p.sub { color: var(--soft); margin: 0 0 28px; font-size: 17px; line-height: 1.5; }
+
+    /* etapa 1: cartinha */
+    .envelope {
+      font-size: 96px;
+      line-height: 1;
+      display: inline-block;
+      animation: balanca 2.4s ease-in-out infinite;
+      margin-top: 4px;
+    }
+    @keyframes balanca {
+      0%, 100% { transform: rotate(-6deg) translateY(0); }
+      50% { transform: rotate(6deg) translateY(-6px); }
+    }
+    .toque {
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 15px;
+      color: var(--rose);
+      font-weight: 700;
+      animation: pisca 1.6s ease-in-out infinite;
+    }
+    @keyframes pisca { 50% { opacity: .35; } }
+    #etapa-carta { cursor: pointer; }
+
+    /* etapa 2: pergunta */
     .buttons {
       display: flex;
       gap: 14px;
@@ -75,7 +111,7 @@
       min-height: 64px;
     }
     button {
-      font: 700 18px/1 "Nunito", system-ui, sans-serif;
+      font: 800 18px/1 "Nunito", system-ui, sans-serif;
       border: 0;
       border-radius: 999px;
       padding: 16px 34px;
@@ -86,47 +122,79 @@
       background: var(--rose);
       color: #fff;
       box-shadow: 0 8px 22px rgba(232, 80, 111, 0.4);
-      transform-origin: center;
+      position: relative;
+      z-index: 2;
     }
-    #sim:hover { background: var(--rose-dark); }
+    #sim:active { background: var(--rose-dark); }
     #nao {
       background: #fff;
       color: var(--soft);
-      box-shadow: 0 4px 14px rgba(74, 34, 48, 0.1);
+      box-shadow: 0 4px 14px rgba(74, 34, 48, 0.12);
       z-index: 5;
+      white-space: nowrap;
     }
     #nao.fugindo {
       position: fixed;
-      transition: left .25s ease, top .25s ease;
+      transition: left .22s ease, top .22s ease, transform .22s ease, background .3s, color .3s;
+    }
+    #nao.convertido {
+      background: var(--rose);
+      color: #fff;
     }
     .hint {
       margin-top: 22px;
-      font-size: 14px;
+      font-size: 15px;
       color: var(--soft);
-      min-height: 20px;
+      min-height: 22px;
       opacity: 0;
       transition: opacity .3s;
     }
     .hint.show { opacity: 1; }
 
-    /* resposta */
-    .resposta { display: none; }
-    .card.aceito .pergunta { display: none; }
-    .card.aceito .resposta { display: block; animation: pop .5s ease; }
-    @keyframes pop {
-      from { opacity: 0; transform: scale(.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
+    /* etapa 3: resposta */
     .resposta p {
-      font-size: 18px;
+      font-size: 17px;
       line-height: 1.55;
-      margin: 0 0 12px;
+      margin: 0 0 10px;
     }
-    .resposta .assina {
-      font-family: "Fraunces", Georgia, serif;
-      font-style: italic;
+    .ticket {
+      position: relative;
+      margin: 22px auto 6px;
+      max-width: 300px;
+      background: #fff;
+      border: 2px dashed #f2a5b5;
+      border-radius: 16px;
+      padding: 18px 18px 14px;
+      text-align: left;
+      transform: rotate(-2deg);
+      box-shadow: 0 10px 24px rgba(201, 56, 90, 0.15);
+    }
+    .ticket::before, .ticket::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 18px; height: 18px;
+      margin-top: -9px;
+      border-radius: 50%;
+      background: var(--bg2);
+    }
+    .ticket::before { left: -11px; }
+    .ticket::after { right: -11px; }
+    .ticket .titulo {
+      font-family: "Caveat", cursive;
+      font-size: 30px;
       color: var(--rose);
-      margin-top: 20px;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .ticket dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; font-size: 14px; }
+    .ticket dt { color: var(--soft); }
+    .ticket dd { margin: 0; font-weight: 700; }
+    .assina {
+      font-family: "Caveat", cursive;
+      font-size: 26px;
+      color: var(--rose);
+      margin-top: 18px;
     }
 
     .coracao {
@@ -137,90 +205,144 @@
       animation: cair linear forwards;
     }
     @keyframes cair {
-      to { transform: translateY(110vh) rotate(var(--r)); opacity: .9; }
+      to { transform: translateY(110dvh) rotate(var(--r)); }
     }
   </style>
 </head>
 <body>
   <main class="card" id="card">
-    <div class="pergunta">
+    <section class="etapa ativa" id="etapa-carta">
+      <div class="envelope">💌</div>
+      <h1>Oi, <em>Mari</em></h1>
+      <p class="sub">Chegou uma cartinha pra você.<br>Ela tem uma pergunta bem importante dentro…</p>
+      <span class="toque">toca pra abrir ✨</span>
+    </section>
+
+    <section class="etapa" id="etapa-pergunta">
       <div class="emoji">🍝</div>
-      <h1>Topa <em>jantar</em> comigo?</h1>
+      <h1>Mari, topa <em>jantar</em> comigo?</h1>
       <p class="sub">Pensa com carinho… mas não demora muito 🙈</p>
       <div class="buttons">
         <button id="sim" type="button">Sim</button>
         <button id="nao" type="button">Não</button>
       </div>
       <div class="hint" id="hint"></div>
-    </div>
+    </section>
 
-    <div class="resposta">
+    <section class="etapa resposta" id="etapa-resposta">
       <div class="emoji">🥰</div>
-      <h1>Ebaaa!</h1>
-      <p>Eu sabia que você ia topar 💕</p>
-      <p>Agora é só a gente escolher o dia. Me chama e me fala quando fica bom pra você, que o resto deixa comigo.</p>
-      <p class="assina">Mal posso esperar ✨</p>
-    </div>
+      <h1>Eu sabia, <em>Mari!</em></h1>
+      <p>Você acabou de deixar meu dia muito melhor 💕</p>
+      <p>Agora só falta a gente escolher o dia. Me chama e me fala quando fica bom pra você, que o resto deixa comigo.</p>
+
+      <div class="ticket">
+        <div class="titulo">Vale um jantar</div>
+        <dl>
+          <dt>Convidada</dt><dd>Mari ✨</dd>
+          <dt>Companhia</dt><dd>Iure</dd>
+          <dt>Data</dt><dd>a gente combina 😉</dd>
+          <dt>Validade</dt><dd>só vale se for logo</dd>
+        </dl>
+      </div>
+
+      <p class="assina">Mal posso esperar 🌹</p>
+    </section>
   </main>
 
   <script>
-    const card = document.getElementById('card');
+    const etapas = {
+      carta: document.getElementById('etapa-carta'),
+      pergunta: document.getElementById('etapa-pergunta'),
+      resposta: document.getElementById('etapa-resposta'),
+    };
     const sim = document.getElementById('sim');
     const nao = document.getElementById('nao');
     const hint = document.getElementById('hint');
 
+    function mostrar(nome) {
+      Object.values(etapas).forEach(el => el.classList.remove('ativa'));
+      etapas[nome].classList.add('ativa');
+    }
+
+    etapas.carta.addEventListener('click', () => mostrar('pergunta'));
+
     const frases = [
       'Opa, escorregou 😅',
-      'Tem certeza? 🥺',
-      'Esse botão tá meio arisco…',
-      'Acho que ele não quer ser clicado',
-      'O "sim" tá logo ali 👉',
-      'Pensa bem… 🍷',
-      'Ele vai continuar fugindo, viu?',
+      'Mari, tem certeza? 🥺',
+      'Esse botão tá meio arisco hoje…',
+      'Acho que ele não quer ser apertado',
+      'O "sim" tá logo ali, ó 👉',
+      'Eu prometo escolher um lugar gostoso 🍷',
+      'Tem sobremesa também 🍰',
+      'Mari… você tá só brincando comigo né 😏',
+      'Ok, vou te ajudar um pouquinho…',
     ];
+    const textosNao = ['Não', 'Não?', 'Certeza?', 'Mari…', 'Pensa bem', 'Última chance', 'Não 🥲', 'Hmm…', 'Tá bom…'];
     let tentativas = 0;
-
+    let convertido = false;
     let ultimo = 0;
+
     function fugir(e) {
+      if (convertido) return;
       if (e) e.preventDefault();
       // no celular o mesmo toque dispara vários eventos; conta só um
       const agora = Date.now();
       if (agora - ultimo < 200) return;
       ultimo = agora;
+
       const r = nao.getBoundingClientRect();
       if (!nao.classList.contains('fugindo')) {
         // fixa na posição atual antes de começar a fugir
+        // sai de dentro do card: o blur do card prende elementos "fixed" nele
         nao.style.left = r.left + 'px';
         nao.style.top = r.top + 'px';
         nao.classList.add('fugindo');
+        document.body.appendChild(nao);
         void nao.offsetWidth;
       }
       const m = 16;
       const maxX = window.innerWidth - r.width - m;
       const maxY = window.innerHeight - r.height - m;
+      const s = sim.getBoundingClientRect();
       let x, y, tries = 0;
       do {
         x = m + Math.random() * (maxX - m);
         y = m + Math.random() * (maxY - m);
         tries++;
-      } while (tries < 20 && Math.hypot(x - r.left, y - r.top) < 120);
+        // longe de onde estava e sem ficar em cima do "sim"
+        var perto = Math.hypot(x - r.left, y - r.top) < 120;
+        var emCimaDoSim = x < s.right + 8 && x + r.width > s.left - 8 && y < s.bottom + 8 && y + r.height > s.top - 8;
+      } while (tries < 30 && (perto || emCimaDoSim));
       nao.style.left = x + 'px';
       nao.style.top = y + 'px';
 
-      hint.textContent = frases[tentativas % frases.length];
+      if (navigator.vibrate) navigator.vibrate(30);
+
+      hint.textContent = frases[Math.min(tentativas, frases.length - 1)];
       hint.classList.add('show');
+      nao.textContent = textosNao[Math.min(tentativas, textosNao.length - 1)];
       tentativas++;
-      sim.style.transform = `scale(${Math.min(1 + tentativas * 0.08, 1.6)})`;
+      sim.style.transform = `scale(${Math.min(1 + tentativas * 0.07, 1.5)})`;
+
+      // depois de tanto fugir, o "não" desiste e vira "sim"
+      if (tentativas >= frases.length) {
+        setTimeout(() => {
+          convertido = true;
+          nao.textContent = 'Sim 😌';
+          nao.classList.add('convertido');
+          hint.textContent = 'Pronto, agora os dois botões concordam 😌';
+        }, 400);
+      }
     }
 
     nao.addEventListener('pointerenter', fugir);
     nao.addEventListener('touchstart', fugir, { passive: false });
-    nao.addEventListener('click', fugir);
+    nao.addEventListener('click', (e) => convertido ? aceitar() : fugir(e));
     nao.addEventListener('focus', () => fugir());
 
     function chuvaDeCoracoes() {
-      const emojis = ['💖', '💕', '💗', '❤️', '🌹', '✨'];
-      for (let i = 0; i < 40; i++) {
+      const emojis = ['💖', '💕', '💗', '❤️', '🌹', '✨', '🍝', '🍷'];
+      for (let i = 0; i < 50; i++) {
         setTimeout(() => {
           const s = document.createElement('span');
           s.className = 'coracao';
@@ -231,21 +353,24 @@
           s.style.animationDuration = 3 + Math.random() * 3 + 's';
           document.body.appendChild(s);
           setTimeout(() => s.remove(), 6500);
-        }, i * 90);
+        }, i * 80);
       }
     }
 
-    sim.addEventListener('click', () => {
+    function aceitar() {
       nao.style.display = 'none';
-      card.classList.add('aceito');
+      mostrar('resposta');
+      if (navigator.vibrate) navigator.vibrate([60, 40, 60]);
       chuvaDeCoracoes();
-    });
+    }
+
+    sim.addEventListener('click', aceitar);
 
     window.addEventListener('resize', () => {
       if (!nao.classList.contains('fugindo')) return;
       const r = nao.getBoundingClientRect();
-      nao.style.left = Math.min(r.left, window.innerWidth - r.width - 16) + 'px';
-      nao.style.top = Math.min(r.top, window.innerHeight - r.height - 16) + 'px';
+      nao.style.left = Math.max(16, Math.min(r.left, window.innerWidth - r.width - 16)) + 'px';
+      nao.style.top = Math.max(16, Math.min(r.top, window.innerHeight - r.height - 16)) + 'px';
     });
   </script>
 </body>
