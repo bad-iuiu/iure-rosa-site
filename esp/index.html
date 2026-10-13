@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Uma pergunta 💌</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💌</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Nunito:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #fff1f3;
+      --bg2: #ffe4ea;
+      --ink: #4a2230;
+      --soft: #8a5566;
+      --rose: #e8506f;
+      --rose-dark: #c9385a;
+      --card: rgba(255, 255, 255, 0.78);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      font-family: "Nunito", system-ui, sans-serif;
+      color: var(--ink);
+      background: radial-gradient(circle at 20% 15%, #ffd6df 0, transparent 45%),
+                  radial-gradient(circle at 85% 85%, #ffd9c7 0, transparent 40%),
+                  linear-gradient(160deg, var(--bg1), var(--bg2));
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      place-items: center;
+      padding: 16px;
+      overflow: hidden;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .card {
+      position: relative;
+      width: min(440px, 100%);
+      background: var(--card);
+      backdrop-filter: blur(8px);
+      border-radius: 28px;
+      padding: 40px 28px 36px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(201, 56, 90, 0.18);
+      z-index: 1;
+    }
+    .emoji {
+      font-size: 64px;
+      line-height: 1;
+      display: inline-block;
+      animation: beat 1.4s ease-in-out infinite;
+    }
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      15% { transform: scale(1.15); }
+      30% { transform: scale(1); }
+      45% { transform: scale(1.1); }
+    }
+    h1 {
+      font-family: "Fraunces", Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(30px, 8vw, 40px);
+      line-height: 1.15;
+      margin: 20px 0 8px;
+    }
+    h1 em { color: var(--rose); }
+    p.sub { color: var(--soft); margin: 0 0 32px; font-size: 17px; }
+    .buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      align-items: center;
+      min-height: 64px;
+    }
+    button {
+      font: 700 18px/1 "Nunito", system-ui, sans-serif;
+      border: 0;
+      border-radius: 999px;
+      padding: 16px 34px;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+    #sim {
+      background: var(--rose);
+      color: #fff;
+      box-shadow: 0 8px 22px rgba(232, 80, 111, 0.4);
+      transform-origin: center;
+    }
+    #sim:hover { background: var(--rose-dark); }
+    #nao {
+      background: #fff;
+      color: var(--soft);
+      box-shadow: 0 4px 14px rgba(74, 34, 48, 0.1);
+      z-index: 5;
+    }
+    #nao.fugindo {
+      position: fixed;
+      transition: left .25s ease, top .25s ease;
+    }
+    .hint {
+      margin-top: 22px;
+      font-size: 14px;
+      color: var(--soft);
+      min-height: 20px;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .hint.show { opacity: 1; }
+
+    /* resposta */
+    .resposta { display: none; }
+    .card.aceito .pergunta { display: none; }
+    .card.aceito .resposta { display: block; animation: pop .5s ease; }
+    @keyframes pop {
+      from { opacity: 0; transform: scale(.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .resposta p {
+      font-size: 18px;
+      line-height: 1.55;
+      margin: 0 0 12px;
+    }
+    .resposta .assina {
+      font-family: "Fraunces", Georgia, serif;
+      font-style: italic;
+      color: var(--rose);
+      margin-top: 20px;
+    }
+
+    .coracao {
+      position: fixed;
+      top: -40px;
+      pointer-events: none;
+      z-index: 0;
+      animation: cair linear forwards;
+    }
+    @keyframes cair {
+      to { transform: translateY(110vh) rotate(var(--r)); opacity: .9; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card" id="card">
+    <div class="pergunta">
+      <div class="emoji">🍝</div>
+      <h1>Topa <em>jantar</em> comigo?</h1>
+      <p class="sub">Pensa com carinho… mas não demora muito 🙈</p>
+      <div class="buttons">
+        <button id="sim" type="button">Sim</button>
+        <button id="nao" type="button">Não</button>
+      </div>
+      <div class="hint" id="hint"></div>
+    </div>
+
+    <div class="resposta">
+      <div class="emoji">🥰</div>
+      <h1>Ebaaa!</h1>
+      <p>Eu sabia que você ia topar 💕</p>
+      <p>Agora é só a gente escolher o dia. Me chama e me fala quando fica bom pra você, que o resto deixa comigo.</p>
+      <p class="assina">Mal posso esperar ✨</p>
+    </div>
+  </main>
+
+  <script>
+    const card = document.getElementById('card');
+    const sim = document.getElementById('sim');
+    const nao = document.getElementById('nao');
+    const hint = document.getElementById('hint');
+
+    const frases = [
+      'Opa, escorregou 😅',
+      'Tem certeza? 🥺',
+      'Esse botão tá meio arisco…',
+      'Acho que ele não quer ser clicado',
+      'O "sim" tá logo ali 👉',
+      'Pensa bem… 🍷',
+      'Ele vai continuar fugindo, viu?',
+    ];
+    let tentativas = 0;
+
+    let ultimo = 0;
+    function fugir(e) {
+      if (e) e.preventDefault();
+      // no celular o mesmo toque dispara vários eventos; conta só um
+      const agora = Date.now();
+      if (agora - ultimo < 200) return;
+      ultimo = agora;
+      const r = nao.getBoundingClientRect();
+      if (!nao.classList.contains('fugindo')) {
+        // fixa na posição atual antes de começar a fugir
+        nao.style.left = r.left + 'px';
+        nao.style.top = r.top + 'px';
+        nao.classList.add('fugindo');
+        void nao.offsetWidth;
+      }
+      const m = 16;
+      const maxX = window.innerWidth - r.width - m;
+      const maxY = window.innerHeight - r.height - m;
+      let x, y, tries = 0;
+      do {
+        x = m + Math.random() * (maxX - m);
+        y = m + Math.random() * (maxY - m);
+        tries++;
+      } while (tries < 20 && Math.hypot(x - r.left, y - r.top) < 120);
+      nao.style.left = x + 'px';
+      nao.style.top = y + 'px';
+
+      hint.textContent = frases[tentativas % frases.length];
+      hint.classList.add('show');
+      tentativas++;
+      sim.style.transform = `scale(${Math.min(1 + tentativas * 0.08, 1.6)})`;
+    }
+
+    nao.addEventListener('pointerenter', fugir);
+    nao.addEventListener('touchstart', fugir, { passive: false });
+    nao.addEventListener('click', fugir);
+    nao.addEventListener('focus', () => fugir());
+
+    function chuvaDeCoracoes() {
+      const emojis = ['💖', '💕', '💗', '❤️', '🌹', '✨'];
+      for (let i = 0; i < 40; i++) {
+        setTimeout(() => {
+          const s = document.createElement('span');
+          s.className = 'coracao';
+          s.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+          s.style.left = Math.random() * 100 + 'vw';
+          s.style.fontSize = 18 + Math.random() * 22 + 'px';
+          s.style.setProperty('--r', (Math.random() * 360 - 180) + 'deg');
+          s.style.animationDuration = 3 + Math.random() * 3 + 's';
+          document.body.appendChild(s);
+          setTimeout(() => s.remove(), 6500);
+        }, i * 90);
+      }
+    }
+
+    sim.addEventListener('click', () => {
+      nao.style.display = 'none';
+      card.classList.add('aceito');
+      chuvaDeCoracoes();
+    });
+
+    window.addEventListener('resize', () => {
+      if (!nao.classList.contains('fugindo')) return;
+      const r = nao.getBoundingClientRect();
+      nao.style.left = Math.min(r.left, window.innerWidth - r.width - 16) + 'px';
+      nao.style.top = Math.min(r.top, window.innerHeight - r.height - 16) + 'px';
+    });
+  </script>
+</body>
+</html>
